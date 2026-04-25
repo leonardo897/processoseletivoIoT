@@ -15,21 +15,21 @@
       "id": "red_led",
       "top": -120,
       "left": 200,
-      "attrs": { "color": "red", "name": "Red" }
+      "attrs": { "color": "red" }
     },
     {
       "type": "wokwi-led",
       "id": "yellow_led",
       "top": -60,
       "left": 200,
-      "attrs": { "color": "yellow", "name": "Yellow" }
+      "attrs": { "color": "yellow" }
     },
     {
       "type": "wokwi-led",
       "id": "green_led",
       "top": 0,
       "left": 200,
-      "attrs": { "color": "green", "name": "Green" }
+      "attrs": { "color": "green" }
     },
     {
       "type": "wokwi-pushbutton",

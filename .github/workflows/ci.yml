@@ -23,12 +23,11 @@ jobs:
     - name: Run container and generate fs.bin
       run: |
         docker run --name esp32-fs-builder esp32-builder /bin/bash
-        
         docker cp esp32-fs-builder:/fs.bin .
 
     - name: Test with Wokwi
       uses: wokwi/wokwi-ci-action@v1
       with:
-        token: ${{ secrets.WOKWI_CLI_TOKEN }}
+        token: ${{ secrets.WOKWI_API_KEY }}
         path: /
-        expect_text: 'Teste'
+        expect_text: 'Smart Traffic Light - System Started'   # Altere para uma string que seu código imprime
