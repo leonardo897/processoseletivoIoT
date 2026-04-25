@@ -4,14 +4,14 @@
   "editor": "wokwi",
   "parts": [
     {
-      "type": "wokwi/esp32-devkit-v1",
+      "type": "esp32-devkit-v1",
       "id": "esp32",
       "top": 0,
       "left": 0,
       "attrs": {}
     },
     {
-      "type": "wokwi/led",
+      "type": "led",
       "id": "red_led",
       "top": -120,
       "left": 200,
@@ -20,7 +20,7 @@
       }
     },
     {
-      "type": "wokwi/led",
+      "type": "led",
       "id": "yellow_led",
       "top": -60,
       "left": 200,
@@ -29,7 +29,7 @@
       }
     },
     {
-      "type": "wokwi/led",
+      "type": "led",
       "id": "green_led",
       "top": 0,
       "left": 200,
@@ -38,7 +38,7 @@
       }
     },
     {
-      "type": "wokwi/pushbutton",
+      "type": "pushbutton",
       "id": "pedestrian_button",
       "top": 120,
       "left": 100,
@@ -47,7 +47,7 @@
       }
     },
     {
-      "type": "wokwi/buzzer",
+      "type": "buzzer",
       "id": "buzzer1",
       "top": 120,
       "left": 250,
