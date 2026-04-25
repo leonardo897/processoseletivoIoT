@@ -173,7 +173,7 @@ def run_traffic_light():
     state_time = time.ticks_ms()
     pedestrian_requested = False
     
-    print("Smart Traffic Light - System Started")
+    print("Smart Traffic Light - System Started ")
     print(f"Initial state: {current_state}")
     
     # ============================================================
