@@ -1,7 +1,7 @@
 [wokwi]
 version = 1
 firmware = "src/main.py"
-elf = ""
+elf = "src/main.py"
 
 [chip]
 type = "esp32"
