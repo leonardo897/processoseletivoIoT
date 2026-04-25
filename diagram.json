@@ -7,8 +7,7 @@
       "type": "wokwi-esp32-devkit-v1",
       "id": "esp32",
       "top": 0,
-      "left": 0,
-      "attrs": { "env": "micropython-20231227-v1.22.0" }
+      "left": 0
     },
     {
       "type": "wokwi-led",
@@ -34,29 +33,27 @@
     {
       "type": "wokwi-pushbutton",
       "id": "pedestrian_button",
-      "top": 140.6,
-      "left": 124.8,
+      "top": 140,
+      "left": 120,
       "attrs": { "color": "blue" }
     },
     {
       "type": "wokwi-buzzer",
       "id": "buzzer1",
-      "top": 117.6,
-      "left": 251.4,
-      "attrs": {}
+      "top": 140,
+      "left": 250
     }
   ],
   "connections": [
-    ["red_led:A", "esp32:D13", "green", []],
-    ["red_led:C", "esp32:GND.1", "black", []],
-    ["yellow_led:A", "esp32:D12", "green", []],
-    ["yellow_led:C", "esp32:GND.1", "black", []],
-    ["green_led:A", "esp32:D14", "green", []],
-    ["green_led:C", "esp32:GND.1", "black", []],
-    ["pedestrian_button:2.l", "esp32:D15", "blue", []],
+    ["red_led:A", "esp32:13", "green", []],
+    ["red_led:C", "esp32:GND", "black", []],
+    ["yellow_led:A", "esp32:12", "green", []],
+    ["yellow_led:C", "esp32:GND", "black", []],
+    ["green_led:A", "esp32:14", "green", []],
+    ["green_led:C", "esp32:GND", "black", []],
+    ["pedestrian_button:2.l", "esp32:15", "blue", []],
     ["pedestrian_button:1.r", "esp32:3V3", "red", []],
-    ["buzzer1:1", "esp32:D27", "purple", []],
-    ["buzzer1:2", "esp32:GND.1", "black", []]
-  ],
-  "dependencies": {}
+    ["buzzer1:1", "esp32:27", "purple", []],
+    ["buzzer1:2", "esp32:GND", "black", []]
+  ]
 }
