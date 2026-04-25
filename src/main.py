@@ -1,6 +1,5 @@
 """
-Smart Traffic Light with Pedestrian Button
-Embedded system for traffic control with manual pedestrian activation.
+Semáforo Inteligente com Travessia de Pedestres - Implementação em MicroPython
 
 Este módulo implementa uma máquina de estados não-bloqueante para controle
 de semáforo com funcionalidade de travessia de pedestres.
@@ -12,9 +11,9 @@ import time
 # ============================================================
 # CONFIGURAÇÃO DE HARDWARE (PINOS)
 # ============================================================
-RED_LED = 13        # LED vermelho do semáforo (veículos)
-YELLOW_LED = 12     # LED amarelo do semáforo (veículos)
-GREEN_LED = 14      # LED verde do semáforo (veículos)
+RED_LED = 13        # LED vermelho do semáforo
+YELLOW_LED = 12     # LED amarelo do semáforo
+GREEN_LED = 14      # LED verde do semáforo
 PEDESTRIAN_BUTTON = 15  # Botão de solicitação de travessia
 BUZZER = 27         # Buzzer para alerta sonoro
 
