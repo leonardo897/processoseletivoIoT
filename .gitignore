@@ -1,1 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environment
+venv/
+env/
 .env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Wokwi
+wokwi-api.key
+*.elf
+*.bin
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
