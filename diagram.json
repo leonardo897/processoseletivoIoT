@@ -47,16 +47,16 @@
     }
   ],
   "connections": [
-    ["red_led:A", "esp32:13", "green", []],
+    ["red_led:A", "esp32:D13", "green", []],
     ["red_led:C", "esp32:GND.1", "black", []],
-    ["yellow_led:A", "esp32:12", "green", []],
-    ["yellow_led:C", "esp32:GND.2", "black", []],
-    ["green_led:A", "esp32:14", "green", []],
-    ["green_led:C", "esp32:GND.3", "black", []],
-    ["pedestrian_button:2.l", "esp32:15", "blue", []],
+    ["yellow_led:A", "esp32:D12", "green", []],
+    ["yellow_led:C", "esp32:GND.1", "black", []],
+    ["green_led:A", "esp32:D14", "green", []],
+    ["green_led:C", "esp32:GND.1", "black", []],
+    ["pedestrian_button:2.l", "esp32:D15", "blue", []],
     ["pedestrian_button:1.r", "esp32:3V3", "red", []],
-    ["buzzer1:1", "esp32:27", "purple", []],
-    ["buzzer1:2", "esp32:GND.4", "black", []]
+    ["buzzer1:1", "esp32:D27", "purple", []],
+    ["buzzer1:2", "esp32:GND.1", "black", []]
   ],
   "dependencies": {}
 }
