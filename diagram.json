@@ -4,7 +4,7 @@
   "editor": "wokwi",
   "parts": [
     {
-      "type": "board-esp32-devkit-c",
+      "type": "board-esp32-devkit-c-v4",
       "id": "esp32",
       "top": 0,
       "left": 0,
@@ -15,21 +15,21 @@
       "id": "red_led",
       "top": -120,
       "left": 200,
-      "attrs": { "color": "red" }
+      "attrs": { "color": "red", "name": "Red" }
     },
     {
       "type": "wokwi-led",
       "id": "yellow_led",
       "top": -60,
       "left": 200,
-      "attrs": { "color": "yellow" }
+      "attrs": { "color": "yellow", "name": "Yellow" }
     },
     {
       "type": "wokwi-led",
       "id": "green_led",
       "top": 0,
       "left": 200,
-      "attrs": { "color": "green" }
+      "attrs": { "color": "green", "name": "Green" }
     },
     {
       "type": "wokwi-pushbutton",
@@ -38,13 +38,7 @@
       "left": 124.8,
       "attrs": { "color": "blue", "label": "Pedestre" }
     },
-    { 
-      "type": "wokwi-buzzer", 
-      "id": "buzzer1", 
-      "top": 117.6, 
-      "left": 251.4, 
-      "attrs": {} 
-    }
+    { "type": "wokwi-buzzer", "id": "buzzer1", "top": 117.6, "left": 251.4, "attrs": {} }
   ],
   "connections": [
     [ "red_led:A", "esp32:13", "green", [ "v10.8", "h-253.8", "v230.4" ] ],

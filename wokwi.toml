@@ -1,10 +1,4 @@
 [wokwi]
 version = 1
-firmware = "src/main.py"
-elf = "src/main.py"
-
-[chip]
-type = "esp32"
-
-[environment]
-framework = "micropython"
+firmware = "flasher_args.json"
+rfc2217ServerPort = 4000
