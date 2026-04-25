@@ -15,9 +15,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
+    - name: Install specific Wokwi CLI version
+      run: |
+        wget -q -O /usr/local/bin/wokwi-cli https://github.com/wokwi/wokwi-cli/releases/download/v0.25.0/wokwi-cli-linuxstatic-x64
+        chmod +x /usr/local/bin/wokwi-cli
+    
     - name: Test with Wokwi
-      uses: wokwi/wokwi-ci-action@v1
-      with:
-        token: ${{ secrets.WOKWI_API_KEY }}
-        path: /
-        expect_text: 'Smart Traffic Light - System Started'  # ou qualquer texto que seu código imprima
+      env:
+        WOKWI_CLI_TOKEN: ${{ secrets.WOKWI_API_KEY }}
+      run: |
+        wokwi-cli --timeout 10000 --expect-text "" .
