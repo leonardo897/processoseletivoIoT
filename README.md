@@ -244,71 +244,98 @@ Preencha todas as seções abaixo de forma **clara, objetiva e técnica**.
 
 ### 👤 Identificação do Candidato
 
-- **Nome completo:**  
-- **GitHub:**  
+- **Nome completo:** Leonardo de Oliveira Sales Vieira
+- **GitHub:** [leonardo897](https://github.com/leonardo897)
 
 ---
 
 ## 1️⃣ Visão Geral da Solução
 
-Descreva, em poucas palavras:
-
-- Qual é o objetivo do seu projeto  
-- O que o sistema embarcado simulado faz  
-- Como o usuário interage com ele (se aplicável)
+O projeto implementa um **semáforo inteligente com suporte à travessia de pedestres**, simulado em um ESP32 via Wokwi utilizando MicroPython.
+ 
+O sistema controla três LEDs (vermelho, amarelo e verde) que representam as fases do semáforo para veículos. Um botão azul permite que pedestres solicitem travessia, alterando o fluxo normal do semáforo. Um buzzer emite um alerta sonoro quando a fase de travessia é iniciada.
+ 
+O usuário interage com o sistema pressionando o botão de pedestre durante a fase verde, o que força uma transição antecipada para amarelo e, em seguida, para vermelho, permitindo a travessia com segurança e sinalização sonora.
 
 ---
 
 ## 2️⃣ Arquitetura do Sistema Embarcado
 
-Explique a arquitetura lógica do seu projeto, abordando:
-
-- Fluxo principal do programa (`main.py`)  
-- Estrutura de estados, loops ou temporizações  
-- Como os componentes interagem entre si  
-
-Se desejar, utilize tópicos ou um pequeno diagrama em texto.
+O programa é estruturado como uma **máquina de estados não-bloqueante**, com os seguintes estados definidos na classe `TrafficLightState`:
+ 
+- `GREEN` → tráfego fluindo normalmente
+- `YELLOW` → transição, atenção
+- `RED` → veículos parados (ciclo normal)
+- `PEDESTRIAN_CROSSING` → vermelho com travessia ativa e buzzer
+O fluxo principal em `run_traffic_light()` executa um loop contínuo que, a cada iteração de 10ms:
+ 
+1. Lê o estado do botão com debounce via classe `ButtonDebounce`
+2. Atualiza o buzzer de forma não-bloqueante via classe `SoundAlert`
+3. Avalia o estado atual e realiza transições com base em tempo (`ticks_ms`) ou eventos (botão pressionado)
+4. Atualiza os LEDs conforme o estado
+O uso de `time.ticks_ms()` no lugar de `time.sleep()` garante que nenhuma parte do sistema fique bloqueada aguardando, permitindo leitura contínua do botão e controle preciso do buzzer.
 
 ---
 
 ## 3️⃣ Componentes Utilizados na Simulação
 
-Liste os principais componentes definidos no `diagram.json`, por exemplo:
-
-- Tipo de placa utilizada  
-- LEDs, botões, sensores, atuadores, etc.  
-- Função de cada componente no sistema  
+| Componente | ID no diagrama | Pino ESP32 | Função |
+|---|---|---|---|
+| ESP32 DevKit C v4 | `esp32` | — | Microcontrolador principal |
+| LED Vermelho | `red_led` | GPIO 13 | Sinaliza parada para veículos |
+| LED Amarelo | `yellow_led` | GPIO 12 | Sinaliza atenção / transição |
+| LED Verde | `green_led` | GPIO 14 | Sinaliza tráfego livre |
+| Botão (azul) | `pedestrian_button` | GPIO 15 | Solicitação de travessia de pedestre |
+| Buzzer | `buzzer1` | GPIO 27 | Alerta sonoro na travessia |
 
 ---
 
 ## 4️⃣ Decisões Técnicas Relevantes
 
-Explique brevemente decisões importantes tomadas durante o desenvolvimento, como:
-
-- Organização do código  
-- Uso de funções, estados ou constantes  
-- Estratégias para temporização ou controle lógico  
+**Máquina de estados não-bloqueante:** a lógica de temporização usa `time.ticks_diff()` em vez de `time.sleep()`, o que permite que o loop principal continue respondendo a eventos (como o botão) mesmo durante as esperas de cada fase.
+ 
+**Debounce por software:** a classe `ButtonDebounce` detecta apenas a borda de descida do sinal do botão e ignora transições dentro de uma janela de 50ms, evitando leituras duplicadas por ruído mecânico.
+ 
+**Buzzer não-bloqueante:** a classe `SoundAlert` alterna o estado do buzzer em intervalos de 200ms sem usar `sleep`, mantendo o loop principal responsivo durante o alerta sonoro.
+ 
+**Separação de responsabilidades:** hardware, lógica de botão, lógica de som e máquina de estados são tratados em funções e classes separadas, tornando o código mais legível e fácil de manter.
+ 
+**Constantes nomeadas:** todos os valores de temporização e pinos são definidos como constantes no topo do arquivo, facilitando ajustes sem necessidade de procurar valores espalhados pelo código.
 
 ---
 
 ## 5️⃣ Resultados Obtidos
 
-Descreva o comportamento final do sistema:
-
-- O que funciona corretamente  
-- Quais requisitos foram atendidos  
-- Resultado observado na simulação do Wokwi  
+O sistema funciona corretamente na simulação do Wokwi:
+ 
+- O semáforo cicla automaticamente entre verde (5s), amarelo (2s) e vermelho (4s)
+- Ao pressionar o botão durante a fase verde, o ciclo é antecipado e a fase de travessia é ativada com buzzer
+- Os LEDs acendem e apagam corretamente em cada transição de estado
+- As mensagens de transição são exibidas na serial, incluindo `"Estado inicial: GREEN` que é validado automaticamente pelo Wokwi CLI no pipeline de CI
+- O pipeline do GitHub Actions executa com sucesso após o ajuste do timeout para 30 segundos
+  
 
 ---
 
 ## 6️⃣ Comentários Adicionais (Opcional)
 
-Utilize este espaço para comentar, se desejar:
+Durante o desenvolvimento, o principal desafio foi a configuração do pipeline de CI com o Wokwi CLI:
+ 
+**Texto de validação:** o `expect_text` no `ci.yml` não detectava o print do `main.py`, causando timeout. Resolvido ao fazer com que ele detectasse a segunda mensagem ao invés da primeira.
 
-- Dificuldades encontradas  
-- Limitações da solução  
-- Melhorias que você faria com mais tempo  
-- Principais aprendizados durante o desafio  
+Limitações da solução:
+
+1. O sistema suporta apenas um semáforo isolado, sem comunicação com outros semáforos — em um cruzamento real seria necessário sincronização entre múltiplos controladores
+2. Não há prioridade para veículos de emergência (ambulância, bombeiros), que em sistemas reais acionam o verde imediatamente
+
+Principais aprendizados:
+
+1. A importância de programação não-bloqueante em sistemas embarcados
+2. Como estruturar uma máquina de estados em MicroPython
+3. O funcionamento do pipeline CI/CD com GitHub Actions integrado ao Wokwi CLI, incluindo como o expect_text funciona como critério de validação
+
+Uma melhoria futura seria adicionar um display para mostrar o tempo restante de cada fase, e suporte a múltiplos botões de pedestre em cruzamentos com mais de uma faixa.
+
 
 ---
 
