@@ -31,4 +31,4 @@ jobs:
       with:
         token: ${{ secrets.WOKWI_CLI_TOKEN }}
         path: /
-        expect_text: 'Iniciando o Sistem de Semáforo'
+        expect_text: "Iniciando o Sistem de Semáforo"
