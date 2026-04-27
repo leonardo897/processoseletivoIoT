@@ -173,7 +173,7 @@ def run_traffic_light():
     state_time = time.ticks_ms()
     pedestrian_requested = False
     
-    print("Iniciando o Sistem de Semáforo")
+    print("Iniciando o Sistema de Semáforo")
     print(f"Estado inicial: {current_state}")
     
     # ============================================================
