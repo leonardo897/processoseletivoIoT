@@ -173,8 +173,8 @@ def run_traffic_light():
     state_time = time.ticks_ms()
     pedestrian_requested = False
     
-    print("Smart Traffic Light - System Started ")
-    print(f"Initial state: {current_state}")
+    print("Iniciando o Sistem de Semáforo")
+    print(f"Estado inicial: {current_state}")
     
     # ============================================================
     # LOOP PRINCIPAL (NÃO-BLOQUEANTE)
@@ -191,7 +191,7 @@ def run_traffic_light():
         # Verifica acionamento do pedestre
         if button.pressed and current_state == TrafficLightState.GREEN:
             pedestrian_requested = True
-            print("Pedestrian button pressed!")
+            print("Um pedestre pressionou o botão!")
         
         # ============================================================
         # TRANSIÇÕES DE ESTADO
@@ -205,7 +205,7 @@ def run_traffic_light():
             if pedestrian_requested or time.ticks_diff(current_time, state_time) >= GREEN_TIME:
                 current_state = TrafficLightState.YELLOW
                 state_time = current_time
-                print(f"State transition: GREEN -> YELLOW")
+                print(f"Mudança de estado: GREEN -> YELLOW")
                 
         elif current_state == TrafficLightState.YELLOW:
             # Amarelo: atenção
@@ -214,11 +214,11 @@ def run_traffic_light():
             if time.ticks_diff(current_time, state_time) >= YELLOW_TIME:
                 if pedestrian_requested:
                     current_state = TrafficLightState.PEDESTRIAN_CROSSING
-                    print(f"State transition: YELLOW -> PEDESTRIAN_CROSSING")
+                    print(f"Mudança de estado: YELLOW -> PEDESTRIAN_CROSSING")
                     alert.start(BUZZER_DURATION)
                 else:
                     current_state = TrafficLightState.RED
-                    print(f"State transition: YELLOW -> RED")
+                    print(f"Mudança de estado: YELLOW -> RED")
                 state_time = current_time
                 
         elif current_state == TrafficLightState.RED:
@@ -228,7 +228,7 @@ def run_traffic_light():
             if time.ticks_diff(current_time, state_time) >= RED_TIME_PEDESTRIAN:
                 current_state = TrafficLightState.GREEN
                 state_time = current_time
-                print(f"State transition: RED -> GREEN")
+                print(f"Mudança de estado: RED -> GREEN")
                 
         elif current_state == TrafficLightState.PEDESTRIAN_CROSSING:
             # Vermelho para travessia de pedestre
@@ -238,7 +238,7 @@ def run_traffic_light():
                 current_state = TrafficLightState.GREEN
                 state_time = current_time
                 pedestrian_requested = False
-                print(f"State transition: PEDESTRIAN_CROSSING -> GREEN")
+                print(f"Mudança de estado: PEDESTRIAN_CROSSING -> GREEN")
         
         # Pequena pausa para evitar consumo excessivo de CPU
         time.sleep_ms(10)
@@ -251,6 +251,6 @@ if __name__ == "__main__":
     try:
         run_traffic_light()
     except KeyboardInterrupt:
-        print("\nSystem stopped by user")
+        print("\nSistema interrompido pelo usuário")
     except Exception as e:
-        print(f"Unexpected error: {e}")
+        print(f"Erro inesperado: {e}")
