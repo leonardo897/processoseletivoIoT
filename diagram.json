@@ -43,17 +43,16 @@
   "connections": [
     [ "esp32:TX", "$serialMonitor:RX", "", [] ],
     [ "esp32:RX", "$serialMonitor:TX", "", [] ],
-    [ "red_led:A", "esp32:13", "green", [ "v10.8", "h-253.8", "v230.4" ] ],
-    [ "esp32:GND.1", "red_led:C", "black", [ "h-14.21", "v-211.2", "h220.8" ] ],
-    [ "yellow_led:A", "esp32:12", "green", [ "v18", "h-244.2", "v144" ] ],
+    [ "red_led:A", "esp32:13", "red", [ "v10.8", "h-253.8", "v230.4" ] ],
+    [ "yellow_led:A", "esp32:12", "gold", [ "v18", "h-244.2", "v144" ] ],
     [ "esp32:GND.2", "yellow_led:C", "black", [ "v0" ] ],
     [ "green_led:A", "esp32:14", "green", [ "v-3.6", "h-100.2", "v-67.2", "h-163.2", "v163.2" ] ],
     [ "esp32:GND.3", "green_led:C", "black", [ "h0" ] ],
     [ "pedestrian_button:2.l", "esp32:15", "blue", [ "h0" ] ],
-    [ "pedestrian_button:1.r", "esp32:GND.1", "black", [ "v-163.2", "h-191.8" ] ],
     [ "buzzer1:1", "esp32:27", "purple", [ "v16.8", "h-344.2", "v-96", "h9.6" ] ],
-    [ "esp32:GND.3", "buzzer1:2", "black", [ "h110.44", "v153.6", "h76.8" ] ]
-    
+    [ "esp32:GND.3", "buzzer1:2", "black", [ "h110.44", "v153.6", "h76.8" ] ],
+    [ "esp32:GND.2", "red_led:C", "black", [ "v0" ] ],
+    [ "esp32:GND.3", "pedestrian_button:1.r", "black", [ "h0" ] ]
   ],
   "dependencies": {}
 }
