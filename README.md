@@ -312,7 +312,6 @@ O sistema funciona corretamente na simulação do Wokwi:
 - Ao pressionar o botão durante a fase verde, o ciclo é antecipado e a fase de travessia é ativada com buzzer
 - Os LEDs acendem e apagam corretamente em cada transição de estado
 - As mensagens de transição são exibidas na serial, incluindo `"Estado inicial: GREEN` que é validado automaticamente pelo Wokwi CLI no pipeline de CI
-- O pipeline do GitHub Actions executa com sucesso após o ajuste do timeout para 30 segundos
   
 
 ---
